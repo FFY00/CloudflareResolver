@@ -1,4 +1,4 @@
-# ClodflareResolver
+# CloudflareResolver
 Cloudflare (and related services) Resolver
 
 ###License
