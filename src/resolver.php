@@ -1,17 +1,21 @@
 <?php
 ini_set('display_errors', 'On');
 
-/*
+/**
  * Legal Stuff
  *
  * @copyright  2015 FFY00 (Filipe Laíns)
  * @license https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
  * @author Filipe Laíns <filipe.lains@gmail.com>
  */
-
-
-// I was to lazy to create functions ^.^
+ 
+/**
+ * Resolver function
+ * @param string $domain
+ * @return array all DNS records found
+ */
 function resolver($domain = "google.com") {
+	// I was to lazy to create functions ^.^
 	$subdomain = array(
                         "",
                         "www",
