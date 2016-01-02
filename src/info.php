@@ -8,11 +8,11 @@
  * @author Filipe Laíns <filipe.lains@gmail.com>
  */
  
- /*
-  * Live Link: https://ffy00.cf/cfresolver/info.php
-  */
+/*
+ * Live Link: https://ffy00.cf/cfresolver/info.php
+ */
   
-  echo '<link rel="stylesheet" type="text/css" href="http://ffy00.cf/bs/bootstrap.min.css"/><center>';
+echo '<link rel="stylesheet" type="text/css" href="http://ffy00.cf/bs/bootstrap.min.css"/><center>';
 echo "<h1><b>Cloudflare Resolver</b></h1>";
 if(isset($_GET["d"])){
 	$json = resolver($_GET["d"]);
@@ -29,10 +29,10 @@ if(isset($_GET["d"])){
 						$ip_total .= ", ".$ip2." (".$geo["isp"].")";
 					}
 				}
-				echo "Dominio: $d<br>IP: $ip_total<br><br>";
+				echo "Domain: $d<br>IP: $ip_total<br><br>";
 			} else {
 					$geo = json_decode(file_get_contents("http://ip-api.com/json/$ip"), true);
-				echo "Dominio: $d<br>IP: $ip (".$geo["isp"].")<br><br>";
+				echo "Domain: $d<br>IP: $ip (".$geo["isp"].")<br><br>";
 			}
 		}
 	}
@@ -49,18 +49,18 @@ if(isset($_GET["d"])){
 						$ip_total .= ", ".$ip2." (".$geo["isp"].")";
 					}
 				}
-				echo "Dominio: $d<br>IP: $ip_total<br><br>";
+				echo "Domain: $d<br>IP: $ip_total<br><br>";
 			} else {
 				$geo = json_decode(file_get_contents("http://ip-api.com/json/$ip"), true);
-				echo "Dominio: $d<br>IP: $ip (".$geo["isp"].")<br><br>";
+				echo "Domain: $d<br>IP: $ip (".$geo["isp"].")<br><br>";
 			}
 		}
 	}
 	if(!isset($json["A"]) && !isset($json["MX"])) {
-		echo "Não foram encontrados registros no DNS deste dominio.";
+		echo "No DNS records found.";
 	}
 } else {
-	echo "Indique um Dominio para resolver.<br>Uso Correto: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?d=google.com";
+	echo "Give a domain to resolve.<br>Correct Use: http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]?d=google.com";
 }
 echo "</center>";
 ?>
