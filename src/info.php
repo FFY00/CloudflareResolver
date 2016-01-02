@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * Legal Stuff
  *
  * @copyright  2015 FFY00 (Filipe Laíns)
@@ -8,7 +8,7 @@
  * @author Filipe Laíns <filipe.lains@gmail.com>
  */
  
-/*
+/**
  * Live Link: https://ffy00.cf/cfresolver/info.php
  */
   
