@@ -10,6 +10,3 @@ resolver.php: Here resolver() function is located.
 api.php: Json API for resolver function.
 
 info.php: Friendly interface for resolver() function. Also show the returned IP's ISP.
-
-#####Info
-My username on HF: AnubisCore
