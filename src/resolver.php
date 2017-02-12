@@ -16,7 +16,7 @@ ini_set('display_errors', 'On');
  */
 function resolver($domain = "google.com") {
 	// I was to lazy to create functions ^.^
-	$subdomain = array(
+	$subdomain[0] = array(
                         "",
                         "www",
                         "mail",
@@ -57,149 +57,40 @@ function resolver($domain = "google.com") {
                         "ipv4",
                         "ipv6"
 	);
-	$subdomain_alfa = range('A', 'Z');
-	$subdomain_num = range('0', '9');
+	$subdomain[1] = range('A', 'Z');
+	$subdomain[2] = range('0', '9');
+	$record_type[0][0] = "A";
+	$record_type[1][0] = "MX";
+	$record_type[0][1] = DNS_A;
+	$record_type[1][1] = DNS_MX;
 	$result = array();
-	foreach($subdomain as $sd) {
-		$d = $sd.".".$domain;
-		if($sd === "") $d = $domain;
-		$r = dns_get_record($d, DNS_A);
-		foreach($r as $n){
-			if($n["type"]=="A") {
-			    $r2 = dns_get_record($n["target"], DNS_A);
-				if(count($r2)==1) {
-					if($r2[0]["type"]=="A") {
-						$result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
-					}
-				} else {
-					$ip = array();
-					foreach($r2 as $n2){
-						if($n2["type"]=="A") {
-							array_push($ip, $n2["ip"]);
-						}
-					}
-					$result["MX"][$n2["host"]] = $ip;
-				}
-			}
-		}
-		$r = dns_get_record($d, DNS_MX);
-		foreach($r as $n){
-			if($n["type"]=="MX") {
-				$r2 = dns_get_record($n["target"], DNS_A);
-				if(count($r2)==1) {
-					if($r2[0]["type"]=="A") {
-						$result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
-					}
-				} else {
-					$ip = array();
-					foreach($r2 as $n2){
-						if($n2["type"]=="A") {
-							array_push($ip, $n2["ip"]);
-						}
-					}
-					$result["MX"][$n2["host"]] = $ip;
-				}
-			}
-		}
-	}
-	foreach($subdomain_alfa as $sd) {
-		$d = $sd.".".$domain;
-		if($sd === "") $d = $domain;
-		$r = dns_get_record($d, DNS_A);
-		foreach($r as $n){
-			if($n["type"]=="A") {
-			    $r2 = dns_get_record($n["target"], DNS_A);
-				if(count($r2)==1) {
-					if($r2[0]["type"]=="A") {
-						$result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
-					}
-				} else {
-					$ip = array();
-					foreach($r2 as $n2){
-						if($n2["type"]=="A") {
-							array_push($ip, $n2["ip"]);
-						}
-					}
-					$result["MX"][$n2["host"]] = $ip;
-				}
-			}
-		}
-		$r = dns_get_record($d, DNS_MX);
-		foreach($r as $n){
-			if($n["type"]=="MX") {
-				$r2 = dns_get_record($n["target"], DNS_A);
-				if(count($r2)==1) {
-					if($r2[0]["type"]=="A") {
-						$result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
-					}
-				} else {
-					$ip = array();
-					foreach($r2 as $n2){
-						if($n2["type"]=="A") {
-							array_push($ip, $n2["ip"]);
-						}
-					}
-					$result["MX"][$n2["host"]] = $ip;
-				}
-			}
-		}
-	}
-	foreach($subdomain_num as $sd) {
-		$d = $sd.".".$domain;
-		if($sd === "") $d = $domain;
-		$r = dns_get_record($d, DNS_A);
-		foreach($r as $n){
-			if($n["type"]=="A") {
-                $r2 = dns_get_record($n["target"], DNS_A);
-				if(count($r2)==1) {
-					if($r2[0]["type"]=="A") {
-						$result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
-					}
-				} else {
-					$ip = array();
-					foreach($r2 as $n2){
-						if($n2["type"]=="A") {
-							array_push($ip, $n2["ip"]);
-						}
-					}
-					$result["MX"][$n2["host"]] = $ip;
-				}
-			}
-		}
-		$r = dns_get_record($d, DNS_MX);
-		foreach($r as $n){
-			if($n["type"]=="MX") {
-				$r2 = dns_get_record($n["target"], DNS_A);
-				if(count($r2)==1) {
-					if($r2[0]["type"]=="A") {
+	foreach($subdomain as $sub) {
+		foreach($sub as $sd) {
+			$d = $sd.".".$domain;
+			if($sd === "") $d = $domain;
+			foreach($record_type as $type){
+				$r = dns_get_record($d, $type[1]);
+				foreach($r as $n){
+					if($n["type"]==$type[0]) {
 					    $r2 = dns_get_record($n["target"], DNS_A);
-					    if(count($r2)==1) {
-					        if($r2[0]["type"]=="A") {
-					            $result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
-					        }
-					    } else {
-					        $ip = array();
-					        foreach($r2 as $n2){
-					            if($n2["type"]=="A") {
-					                array_push($ip, $n2["ip"]);
-					            }
-					        }
-					        $result["MX"][$n2["host"]] = $ip;
-					    }
-					}
-				} else {
-					$ip = array();
-					foreach($r2 as $n2){
-						if($n2["type"]=="A") {
-							array_push($ip, $n2["ip"]);
+						if(count($r2)==1) {
+							if($r2[0]["type"]=="A") {
+								$result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
+							}
+						} else {
+							$ip = array();
+							foreach($r2 as $n2){
+								if($n2["type"]=="A") {
+									array_push($ip, $n2["ip"]);
+								}
+							}
+							$result["MX"][$n2["host"]] = $ip;
 						}
 					}
-					$result["MX"][$n2["host"]] = $ip;
 				}
 			}
 		}
 	}
-	
 	return $result;
 }
 
