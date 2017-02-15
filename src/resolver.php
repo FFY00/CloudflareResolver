@@ -75,7 +75,7 @@ function resolver($domain = "google.com") {
 					    $r2 = dns_get_record($n["target"], DNS_A);
 						if(count($r2)==1) {
 							if($r2[0]["type"]=="A") {
-								$result["MX"][$r2[0]["host"]] = $r2[0]["ip"];
+								$result[$type[0]][$r2[0]["host"]] = $r2[0]["ip"];
 							}
 						} else {
 							$ip = array();
@@ -84,7 +84,7 @@ function resolver($domain = "google.com") {
 									array_push($ip, $n2["ip"]);
 								}
 							}
-							$result["MX"][$n2["host"]] = $ip;
+							$result[$type[0]][$n2["host"]] = $ip;
 						}
 					}
 				}
