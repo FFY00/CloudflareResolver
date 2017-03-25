@@ -4,8 +4,8 @@ ini_set('display_errors', 'On');
 /**
  * Legal Stuff
  *
- * @copyright  2015 FFY00 (Filipe Laíns)
- * @license https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.txt Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+ * @copyright  2015  FFY00 (Filipe Laíns)
+ * @license https://github.com/FFY00/Simple-Non-Code-License-SNCL/blob/master/LICENSE.md Simple Non Code License (SNCL)
  * @author Filipe Laíns <filipe.lains@gmail.com>
  */
  
