@@ -2,7 +2,7 @@ CloudflareResolver [![Follow](https://img.shields.io/twitter/follow/MissingClara
 ==
 Resolver for A and MX dns records, useful for Cloudflare resolving.
 
-###### This is an old version oif the resolver, don't know if it works.
+###### This is an old version of the resolver, don't know if it works.
 
 ### License [![License](https://img.shields.io/badge/license-SNCL-lightgrey.svg)](https://tldrlegal.com/license/simple-non-code-license-%28sncl%29)
 
