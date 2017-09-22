@@ -12,7 +12,7 @@
  * Live Link: https://ffy00.cf/cfresolver/info.php
  */
   
-echo '<link rel="stylesheet" type="text/css" href="http://ffy00.cf/bs/bootstrap.min.css"/><center>';
+echo '<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/><center>';
 echo "<h1><b>Cloudflare Resolver</b></h1>";
 if(isset($_GET["d"])){
 	$json = resolver($_GET["d"]);
